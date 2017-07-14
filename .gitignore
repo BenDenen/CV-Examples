@@ -1,0 +1,15 @@
+*.iml
+.gradle
+/local.properties
+/.idea/workspace.xml
+/.idea/libraries
+.DS_Store
+/build
+/captures
+.idea
+Assets
+openCVLibrary310/build
+
+.externalNativeBuild
+libwebp
+.DS_Store
