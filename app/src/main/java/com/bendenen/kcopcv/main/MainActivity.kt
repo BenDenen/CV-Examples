@@ -1,4 +1,4 @@
-package com.bendenen.kcopcv
+package com.bendenen.kcopcv.main
 
 import android.Manifest
 import android.os.Bundle

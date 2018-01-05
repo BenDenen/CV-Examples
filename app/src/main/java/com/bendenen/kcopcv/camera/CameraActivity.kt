@@ -1,4 +1,4 @@
-package com.bendenen.kcopcv
+package com.bendenen.kcopcv.camera
 
 import android.support.v7.app.AppCompatActivity
 
