@@ -1,4 +1,4 @@
-package com.example.borisdenisenko.kotlin_opencv_counters
+package com.bendenen.kcopcv
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4

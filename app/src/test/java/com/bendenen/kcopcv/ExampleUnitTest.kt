@@ -1,4 +1,4 @@
-package com.example.borisdenisenko.kotlin_opencv_counters
+package com.bendenen.kcopcv
 
 import org.junit.Test
 

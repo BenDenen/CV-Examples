@@ -1,4 +1,4 @@
-package com.example.borisdenisenko.kotlin_opencv_counters
+package com.bendenen.kcopcv
 
 import android.Manifest
 import android.os.Bundle
@@ -6,9 +6,9 @@ import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import com.bendenen.kcopcv.kotlin_opencv_counters.R
 
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.content_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -16,6 +16,9 @@ class MainActivity : AppCompatActivity() {
 
         val CAPTURE_PERMISSIONS = arrayOf(Manifest.permission.CAMERA)
         const val CAPTURE_PERMISSIONS_REQUEST = 101
+
+        val GALLERY_PERMISSIONS = arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        const val GALLERY_PERMISSIONS_REQUEST = 102
 
     }
 
