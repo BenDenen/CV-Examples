@@ -1,5 +1,7 @@
 package com.bendenen.kcopcv.camera
 
+import android.content.Context
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 
 /**
@@ -12,6 +14,11 @@ class CameraActivity : AppCompatActivity() {
         // Used to load the 'native-lib' library on application startup.
         init {
             System.loadLibrary("native-lib")
+        }
+
+        fun createIntent(context: Context): Intent {
+            val intent = Intent(context, CameraActivity::class.java)
+            return intent
         }
     }
 
