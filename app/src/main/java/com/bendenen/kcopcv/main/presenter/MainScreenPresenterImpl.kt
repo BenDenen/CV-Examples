@@ -5,23 +5,39 @@ import com.bendenen.kcopcv.main.view.MainScreenView
 
 class MainScreenPresenterImpl() : MainScreenPresenter {
 
+    var view: MainScreenView? = null
+    var router: MainScreenRouter? = null
+
     override fun takeView(viperView: MainScreenView) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        view = viperView
+        view?.onViewTaken(this)
     }
 
     override fun takeRouter(viperRouter: MainScreenRouter) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        router = viperRouter
     }
 
     override fun dropView() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        view = null
     }
 
     override fun dropRouter() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        router = null
     }
 
     override fun requestCameraScreen() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        if(router?.isCapturePermissionsGranted()!!) {
+            router?.startCameraActivity()
+        } else {
+            router?.requestCapturePermissions()
+        }
     }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        if (router?.onRequestCaptureResult(requestCode, permissions, grantResults)!!) {
+            requestCameraScreen()
+        }
+    }
+
+
 }

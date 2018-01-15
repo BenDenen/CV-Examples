@@ -3,7 +3,7 @@ package com.bendenen.kcopcv.viper
 /**
  * Base Viper Preseter Interface
  */
-interface ViperPresenter<V, R> where V : ViperView, R : ViperRouter {
+interface ViperPresenter<in V, in R> where V : ViperView, R : ViperRouter {
 
     fun takeView(viperView: V)
 

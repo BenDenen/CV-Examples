@@ -1,37 +1,43 @@
 package com.bendenen.kcopcv.main
 
-import android.Manifest
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import com.bendenen.kcopcv.kotlin_opencv_counters.R
+import com.bendenen.kcopcv.main.presenter.MainScreenPresenter
+import com.bendenen.kcopcv.main.presenter.MainScreenPresenterImpl
+import com.bendenen.kcopcv.main.router.MainScreenRouter
+import com.bendenen.kcopcv.main.router.MainScreenRouterImpl
+import com.bendenen.kcopcv.main.view.MainScreenView
 
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), MainScreenView {
 
-    companion object {
-
-        val CAPTURE_PERMISSIONS = arrayOf(Manifest.permission.CAMERA)
-        const val CAPTURE_PERMISSIONS_REQUEST = 101
-
-        val GALLERY_PERMISSIONS = arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-        const val GALLERY_PERMISSIONS_REQUEST = 102
-
-    }
+    lateinit var presenter:MainScreenPresenter
+    lateinit var router:MainScreenRouter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
-        }
+        presenter = MainScreenPresenterImpl()
+        router = MainScreenRouterImpl(this)
 
+    }
+
+    override fun onStart() {
+        super.onStart()
+        presenter.takeRouter(router)
+        presenter.takeView(this)
+    }
+
+    override fun onStop() {
+        presenter.dropView()
+        presenter.dropRouter()
+        super.onStop()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -47,6 +53,12 @@ class MainActivity : AppCompatActivity() {
         return when (item.itemId) {
             R.id.action_settings -> true
             else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    override fun onViewTaken(presenter: MainScreenPresenter) {
+        fab.setOnClickListener {
+            presenter.requestCameraScreen()
         }
     }
 

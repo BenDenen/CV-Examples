@@ -11,4 +11,6 @@ interface MainScreenPresenter : ViperPresenter<MainScreenView,MainScreenRouter> 
 
     fun requestCameraScreen()
 
+    fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray)
+
 }

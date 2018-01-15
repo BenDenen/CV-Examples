@@ -9,4 +9,10 @@ interface MainScreenRouter : ViperRouter {
 
     fun startCameraActivity()
 
+    fun isCapturePermissionsGranted(): Boolean
+
+    fun requestCapturePermissions()
+
+    fun onRequestCaptureResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray): Boolean
+
 }
